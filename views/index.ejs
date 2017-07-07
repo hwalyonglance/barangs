@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script src='jquery/dist/jquery.min.js'></script>
+		<script src='socket.io-client/dist/socket.io.js'></script>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<p>Welcome to <%= title %></p>
+		<button id="hh">klik saya</button>
+		<script>
+			var socket = io.connect();
+			socket.on('news', function (data) {
+				console.log(data);
+				socket.emit('my other event', { my: 'data' });
+			});
+			socket.emit('ng-auth-ng-admin', { dari: 'client auto' })
+			$('#hh').click(function(){
+				socket.emit('ng-auth-ng-admin', { dari: 'client' })
+			});
+		</script>
+	</body>
+</html>
